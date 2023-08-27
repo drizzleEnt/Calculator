@@ -1,6 +1,8 @@
 package cheker
 
-import "strconv"
+import (
+	"strconv"
+)
 
 func CheckIsArabic(numstr string) (int, bool) {
 	num, err := strconv.Atoi(numstr)
@@ -8,6 +10,11 @@ func CheckIsArabic(numstr string) (int, bool) {
 	if err != nil {
 		return 0, false
 	}
+
+	if num > 10 || num < 1 {
+		return 0, false
+	}
+
 	return num, true
 }
 

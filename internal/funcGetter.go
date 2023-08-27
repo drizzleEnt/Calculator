@@ -9,11 +9,7 @@ func GetOperationFunc(operationSymbol string, isArabic bool) func(a int, b int) 
 	var f func(a, b int) int
 	switch operationSymbol {
 	case "+":
-		if isArabic {
-			f = mymath.AddInt
-		} else {
-			f = mymath.AddRim
-		}
+		f = mymath.AddInt
 	case "-":
 		if isArabic {
 			f = mymath.SubtractInt
@@ -21,17 +17,9 @@ func GetOperationFunc(operationSymbol string, isArabic bool) func(a int, b int) 
 			f = mymath.SubtractRim
 		}
 	case "/":
-		if isArabic {
-			f = mymath.DivideInt
-		} else {
-			f = mymath.DivideRim
-		}
+		f = mymath.DivideInt
 	case "*":
-		if isArabic {
-			f = mymath.MultiplyInt
-		} else {
-			f = mymath.MultiplyRim
-		}
+		f = mymath.MultiplyInt
 	default:
 		log.Fatalf("unknown operation symbol")
 	}

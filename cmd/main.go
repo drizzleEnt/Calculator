@@ -1,14 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"calculator/internal"
 	"calculator/internal/cheker"
 	"calculator/internal/writter"
-	"fmt"
 	"log"
+	"os"
+	"strings"
 )
-
-var rim map[string]int
 
 func main() {
 	var firstNumber string
@@ -21,7 +21,18 @@ func main() {
 
 	var checkFunc func(string) (int, bool)
 
-	fmt.Scan(&firstNumber, &operationSymbol, &secondNumber)
+	reader := bufio.NewReader(os.Stdin)
+
+	text, _ := reader.ReadString('\n')
+	s := strings.Split(text, " ")
+
+	if len(s) > 3 {
+		log.Fatal("Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
+	}
+
+	firstNumber = s[0]
+	operationSymbol = s[1]
+	secondNumber = strings.TrimSpace(s[2])
 
 	if fNumber, ok = cheker.CheckIsArabic(firstNumber); ok {
 		checkFunc = cheker.CheckIsArabic
